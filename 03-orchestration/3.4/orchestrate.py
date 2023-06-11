@@ -10,6 +10,7 @@ import mlflow
 import xgboost as xgb
 from prefect import flow, task
 from prefect.artifacts import create_markdown_artifact
+from prefect_email import EmailServerCredentials, email_send_message
 
 
 @task(retries=3, retry_delay_seconds=2, name="Read taxi data")
@@ -135,6 +136,13 @@ def main_flow(
 
     # Train
     train_best_model(X_train, X_val, y_train, y_val, dv)
+    email_server_credentials = EmailServerCredentials.load("prefect-gmail")
+    email_send_message(
+        email_server_credentials=email_server_credentials,
+        subject="This is just to check out the prefect-email",
+        msg="The prefect flow ran successfully",
+        email_to="afahim03@yahoo.com",
+    )
 
 
 if __name__ == "__main__":

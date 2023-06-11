@@ -1,0 +1,62 @@
+###
+### A complete description of a Prefect Deployment for flow 'main-flow'
+###
+name: My Prefect Project
+description: The main training pipeline
+version: cb2420d6f956289b2540b097613b0613
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+work_pool_name: null
+tags: []
+parameters: {}
+schedule:
+  cron: 0 9 3 * *
+  timezone: null
+  day_or: true
+is_schedule_active: null
+infra_overrides: {}
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  block_type_slug: process
+  _block_type_slug: process
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: main-flow
+manifest_path: null
+storage:
+  repository: https://github.com/AhmedFahim-git/mlops-zoomcamp
+  reference: null
+  access_token: null
+  include_git_objects: true
+  _block_document_id: 1a73d19c-531e-449e-a9f0-88a1a8b62109
+  _block_document_name: my-prefect-github
+  _is_anonymous: false
+  block_type_slug: github
+  _block_type_slug: github
+path: ''
+entrypoint: 03-orchestration/3.4/orchestrate.py:main_flow
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    train_path:
+      title: train_path
+      default: ./data/green_tripdata_2023-01.parquet
+      position: 0
+      type: string
+    val_path:
+      title: val_path
+      default: ./data/green_tripdata_2023-02.parquet
+      position: 1
+      type: string
+  required: null
+  definitions: null
+timestamp: '2023-06-11T10:52:13.696151+00:00'
